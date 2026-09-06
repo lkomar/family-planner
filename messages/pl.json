@@ -1,0 +1,14 @@
+{
+  "Metadata": {
+    "title": "Planer Rodzinny",
+    "description": "Planujcie zadania i organizujcie się razem jako rodzina."
+  },
+  "HomePage": {
+    "title": "Planer Rodzinny",
+    "subtitle": "Wspólna przestrzeń rodziny na zadania, plany i wszystko pomiędzy.",
+    "getStarted": "Zaczynajmy"
+  },
+  "LanguageSwitcher": {
+    "label": "Język"
+  }
+}

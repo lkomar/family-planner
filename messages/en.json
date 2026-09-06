@@ -1,0 +1,14 @@
+{
+  "Metadata": {
+    "title": "Family Planner",
+    "description": "Plan tasks and stay organized together as a family."
+  },
+  "HomePage": {
+    "title": "Family Planner",
+    "subtitle": "Your family's shared space for tasks, plans, and everything in between.",
+    "getStarted": "Get started"
+  },
+  "LanguageSwitcher": {
+    "label": "Language"
+  }
+}
