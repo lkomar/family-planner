@@ -18,14 +18,19 @@ const SIGNUP_PATH_PATTERN = new RegExp(
 /**
  * Resolves which household (tenant) a request belongs to, from its
  * hostname. `null` means the apex/marketing host — no tenant, only signup
- * lives there. Mirrors lib/tenant.ts's `getRequestSubdomain`, but reads the
- * hostname straight off `NextRequest` instead of `next/headers` (not
- * available this early).
+ * lives there. Mirrors lib/tenant.ts's `getRequestSubdomain` exactly,
+ * reading the `Host` header directly since `next/headers` isn't available
+ * this early. `request.nextUrl.hostname` is NOT a reliable substitute here —
+ * it can disagree with the `Host` header the app actually received (e.g.
+ * `localhost` while `Host` is `komary.lvh.me:3000`), which silently dropped
+ * the subdomain and broke tenant resolution.
  */
 function resolveSubdomain(request: NextRequest): string | null {
   const rootDomain = process.env.ROOT_DOMAIN;
   if (!rootDomain) return process.env.DEV_SUBDOMAIN ?? "demo";
-  return extractSubdomain(request.nextUrl.hostname, rootDomain);
+
+  const host = request.headers.get("host") ?? request.nextUrl.hostname;
+  return extractSubdomain(host, rootDomain);
 }
 
 /**
