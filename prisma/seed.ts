@@ -1,10 +1,14 @@
-import { PrismaBetterSqlite3 } from "@prisma/adapter-better-sqlite3";
+import { PrismaPg } from "@prisma/adapter-pg";
+import { hashPassword } from "../lib/auth";
 import { PrismaClient } from "../lib/generated/prisma/client";
 
+const connectionString = process.env.DATABASE_URL;
+if (!connectionString) {
+  throw new Error("DATABASE_URL is not set — see .env.example.");
+}
+
 const db = new PrismaClient({
-  adapter: new PrismaBetterSqlite3({
-    url: process.env.DATABASE_URL ?? "file:./dev.db",
-  }),
+  adapter: new PrismaPg({ connectionString }),
 });
 
 async function main() {
@@ -13,6 +17,10 @@ async function main() {
   const household = await db.household.create({
     data: {
       name: "The Smith Family",
+      // Matches DEV_SUBDOMAIN in .env.example, and "letmein-dev" is a local
+      // dev value only — never used once ROOT_DOMAIN/production takes over.
+      subdomain: "demo",
+      passwordHash: hashPassword("letmein-dev"),
       dinnerTonight: "Homemade Tacos & Guacamole 🌮",
       todos: {
         create: [

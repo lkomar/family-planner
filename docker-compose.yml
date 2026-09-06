@@ -1,0 +1,17 @@
+services:
+  # Local Postgres for development — production uses a managed Postgres
+  # (e.g. Neon via Vercel's Storage tab), not this container.
+  db:
+    image: postgres:17-alpine
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: family_planner
+      POSTGRES_PASSWORD: family_planner
+      POSTGRES_DB: family_planner
+    ports:
+      - "5432:5432"
+    volumes:
+      - family_planner_db:/var/lib/postgresql/data
+
+volumes:
+  family_planner_db:

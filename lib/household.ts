@@ -1,22 +1,20 @@
+import { notFound } from "next/navigation";
 import { db } from "@/lib/db";
+import { getRequestSubdomain } from "@/lib/tenant";
 
 /**
- * Resolves the household the current request belongs to. There's no
- * auth/multi-household support yet, so this returns the single seeded
- * household — but every query already goes through this function (and every
- * model is scoped by `householdId`), so adding accounts later is a matter of
- * deriving the id from the session here instead of picking the first row.
+ * Resolves the household (tenant) the current request belongs to, by
+ * subdomain (see lib/tenant.ts). 404s if the host has no tenant (the
+ * apex/marketing domain) or the subdomain doesn't match any household —
+ * pages that must render without a tenant (the signup flow) should not call
+ * this.
  */
 export async function getCurrentHousehold() {
-  const household = await db.household.findFirst({
-    orderBy: { createdAt: "asc" },
-  });
+  const subdomain = await getRequestSubdomain();
+  if (!subdomain) notFound();
 
-  if (!household) {
-    throw new Error(
-      "No household found — run `npx prisma db seed` to create one.",
-    );
-  }
+  const household = await db.household.findUnique({ where: { subdomain } });
+  if (!household) notFound();
 
   return household;
 }

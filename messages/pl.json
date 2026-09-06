@@ -11,6 +11,18 @@
     "submit": "Odblokuj",
     "error": "To hasło nie zadziałało — spróbuj ponownie."
   },
+  "Signup": {
+    "title": "Utwórz przestrzeń swojej rodziny",
+    "subtitle": "Wybierz nazwę swojej przestrzeni i hasło, które ją zabezpieczy.",
+    "householdNameLabel": "Nazwa rodziny",
+    "householdNamePlaceholder": "np. Rodzina Kowalskich",
+    "subdomainLabel": "Adres Twojej przestrzeni",
+    "passwordLabel": "Hasło",
+    "passwordPlaceholder": "Minimum 8 znaków",
+    "submit": "Utwórz moją przestrzeń",
+    "errorTaken": "Ten adres jest już zajęty — spróbuj innego.",
+    "errorInvalid": "Sprawdź powyższe pola i spróbuj ponownie."
+  },
   "LanguageSwitcher": {
     "label": "Język"
   },

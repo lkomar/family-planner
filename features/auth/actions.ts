@@ -1,38 +1,139 @@
 "use server";
 
 import { cookies } from "next/headers";
+import { notFound, redirect as redirectAbsolute } from "next/navigation";
 import { hasLocale } from "next-intl";
+import { z } from "zod";
 import { redirect } from "@/i18n/navigation";
 import { routing } from "@/i18n/routing";
 import {
   createSessionToken,
+  hashPassword,
   SESSION_COOKIE_NAME,
   SESSION_MAX_AGE_SECONDS,
-  verifySitePassword,
+  verifyPassword,
 } from "@/lib/auth";
+import { db } from "@/lib/db";
+import { getRequestSubdomain } from "@/lib/tenant";
 
-export async function unlock(formData: FormData) {
-  const password = String(formData.get("password") ?? "");
-  // `next-intl`'s locale getters don't work inside Server Actions (there's no
-  // route context to read it from), so the page passes it through as a
-  // hidden field instead — see app/[locale]/unlock/page.tsx.
-  const rawLocale = String(formData.get("locale") ?? "");
-  const locale = hasLocale(routing.locales, rawLocale)
-    ? rawLocale
-    : routing.defaultLocale;
+/**
+ * `next-intl`'s locale getters don't work inside Server Actions (there's no
+ * route context to read it from), so pages pass it through as a hidden
+ * field instead — see app/[locale]/unlock and app/[locale]/signup.
+ */
+function readLocale(formData: FormData) {
+  const raw = String(formData.get("locale") ?? "");
+  return hasLocale(routing.locales, raw) ? raw : routing.defaultLocale;
+}
 
-  if (!verifySitePassword(password)) {
-    redirect({ href: { pathname: "/unlock", query: { error: "1" } }, locale });
-  }
-
-  const cookieStore = await cookies();
-  cookieStore.set(SESSION_COOKIE_NAME, createSessionToken(), {
+function setSessionCookie(
+  cookieStore: Awaited<ReturnType<typeof cookies>>,
+  subdomain: string,
+) {
+  cookieStore.set(SESSION_COOKIE_NAME, createSessionToken(subdomain), {
     httpOnly: true,
     secure: process.env.NODE_ENV === "production",
     sameSite: "lax",
     path: "/",
     maxAge: SESSION_MAX_AGE_SECONDS,
   });
+}
 
+export async function unlock(formData: FormData) {
+  const password = String(formData.get("password") ?? "");
+  const locale = readLocale(formData);
+
+  const subdomain = await getRequestSubdomain();
+  if (!subdomain) notFound();
+
+  const household = await db.household.findUnique({ where: { subdomain } });
+  if (!household || !verifyPassword(password, household.passwordHash)) {
+    redirect({ href: { pathname: "/unlock", query: { error: "1" } }, locale });
+  }
+
+  setSessionCookie(await cookies(), subdomain);
   redirect({ href: "/", locale });
+}
+
+const RESERVED_SUBDOMAINS = new Set([
+  "www",
+  "api",
+  "app",
+  "admin",
+  "mail",
+  "ftp",
+  "unlock",
+  "signup",
+  "assets",
+  "static",
+]);
+
+const signupSchema = z.object({
+  householdName: z.string().trim().min(1).max(100),
+  subdomain: z
+    .string()
+    .trim()
+    .toLowerCase()
+    .min(3)
+    .max(63)
+    .regex(
+      /^[a-z0-9]([a-z0-9-]{0,61}[a-z0-9])?$/,
+      "Lowercase letters, numbers, and hyphens only.",
+    )
+    .refine(
+      (value) => !RESERVED_SUBDOMAINS.has(value),
+      "That name is reserved.",
+    ),
+  password: z.string().min(8).max(200),
+});
+
+export async function signup(formData: FormData) {
+  const locale = readLocale(formData);
+
+  const parsed = signupSchema.safeParse({
+    householdName: formData.get("householdName"),
+    subdomain: formData.get("subdomain"),
+    password: formData.get("password"),
+  });
+
+  if (!parsed.success) {
+    redirect({
+      href: { pathname: "/signup", query: { error: "invalid" } },
+      locale,
+    });
+    return;
+  }
+
+  const { householdName, subdomain, password } = parsed.data;
+
+  const existing = await db.household.findUnique({ where: { subdomain } });
+  if (existing) {
+    redirect({
+      href: { pathname: "/signup", query: { error: "taken" } },
+      locale,
+    });
+    return;
+  }
+
+  await db.household.create({
+    data: {
+      name: householdName,
+      subdomain,
+      passwordHash: hashPassword(password),
+    },
+  });
+
+  setSessionCookie(await cookies(), subdomain);
+
+  const rootDomain = process.env.ROOT_DOMAIN;
+  if (!rootDomain) {
+    // Local dev has no real subdomain to jump to — ROOT_DOMAIN is unset, so
+    // every host already resolves to DEV_SUBDOMAIN (see lib/tenant.ts).
+    redirect({ href: "/", locale });
+    return;
+  }
+
+  // Cross-subdomain, so this needs an absolute-URL redirect — next-intl's
+  // `redirect` only knows about paths on the current origin.
+  redirectAbsolute(`https://${subdomain}.${rootDomain}/${locale}`);
 }

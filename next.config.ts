@@ -2,9 +2,10 @@ import type { NextConfig } from "next";
 import createNextIntlPlugin from "next-intl/plugin";
 
 const nextConfig: NextConfig = {
-  // better-sqlite3 is a native addon; keep it (and the Prisma client that
-  // wraps it) out of the bundle and required at runtime instead.
-  serverExternalPackages: ["@prisma/client", "better-sqlite3"],
+  // Keep the Prisma client and the `pg` driver out of the server bundle and
+  // required at runtime instead — both expect to be loaded as real Node
+  // modules, not bundled.
+  serverExternalPackages: ["@prisma/client", "pg"],
 };
 
 const withNextIntl = createNextIntlPlugin("./i18n/request.ts");

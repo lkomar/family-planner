@@ -11,6 +11,18 @@
     "submit": "Unlock",
     "error": "That password didn't work — try again."
   },
+  "Signup": {
+    "title": "Create Your Family's Space",
+    "subtitle": "Pick a name for your space and a password to protect it.",
+    "householdNameLabel": "Household name",
+    "householdNamePlaceholder": "e.g. The Smith Family",
+    "subdomainLabel": "Your space's address",
+    "passwordLabel": "Password",
+    "passwordPlaceholder": "At least 8 characters",
+    "submit": "Create My Space",
+    "errorTaken": "That address is already taken — try another.",
+    "errorInvalid": "Please check the fields above and try again."
+  },
   "LanguageSwitcher": {
     "label": "Language"
   },

@@ -7,15 +7,23 @@ generator client {
 }
 
 datasource db {
-  provider = "sqlite"
+  provider = "postgresql"
 }
 
-/// A single family's shared space. Every other model hangs off one household.
-/// There's no auth/multi-household UI yet — see lib/household.ts — but modeling
-/// it now avoids a painful migration once accounts exist.
+/// One family's shared space — and one tenant. Every other model hangs off a
+/// household, and every request is routed to one by its subdomain (see
+/// lib/tenant.ts and lib/household.ts), so a family's data never crosses into
+/// another family's space.
 model Household {
   id            String   @id @default(cuid())
   name          String
+  /// DNS-label subdomain slug (e.g. "smiths" for smiths.<root domain>).
+  /// Lowercase, validated at signup — see features/auth/actions.ts.
+  subdomain     String   @unique
+  /// scrypt hash ("scrypt:<salt>:<hash>", see lib/auth.ts) of this
+  /// household's shared password. Not a per-user account system — one
+  /// password per family, same as the pre-multi-tenant single-household setup.
+  passwordHash  String
   /// Free-text "what's for dinner tonight" note shown on the dashboard.
   dinnerTonight String?
   createdAt     DateTime @default(now())
