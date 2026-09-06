@@ -3,6 +3,14 @@
     "title": "Family Planner",
     "description": "Plan tasks, meals, groceries, and school schedules together as a family."
   },
+  "Unlock": {
+    "title": "Family Planner is Locked",
+    "subtitle": "Enter the household password to continue.",
+    "passwordLabel": "Password",
+    "passwordPlaceholder": "Enter password",
+    "submit": "Unlock",
+    "error": "That password didn't work — try again."
+  },
   "LanguageSwitcher": {
     "label": "Language"
   },

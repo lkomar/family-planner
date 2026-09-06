@@ -3,6 +3,14 @@
     "title": "Planer Rodzinny",
     "description": "Planujcie zadania, posiłki, zakupy i szkolne plany razem jako rodzina."
   },
+  "Unlock": {
+    "title": "Planer Rodzinny jest zablokowany",
+    "subtitle": "Wprowadź hasło domowe, aby kontynuować.",
+    "passwordLabel": "Hasło",
+    "passwordPlaceholder": "Wpisz hasło",
+    "submit": "Odblokuj",
+    "error": "To hasło nie zadziałało — spróbuj ponownie."
+  },
   "LanguageSwitcher": {
     "label": "Język"
   },
