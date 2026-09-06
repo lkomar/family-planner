@@ -17,7 +17,7 @@ export async function GET(request: NextRequest) {
       );
     }
 
-    const household = await getCurrentHousehold();
+    await getCurrentHousehold();
     const childrenIds = childrenIdsParam.split(",").filter(Boolean);
 
     // Fetch timetable slots for the selected day
@@ -25,11 +25,6 @@ export async function GET(request: NextRequest) {
       where: {
         childId: { in: childrenIds },
         weekday: day,
-      },
-      include: {
-        child: {
-          select: { name: true },
-        },
       },
       orderBy: { order: "asc" },
     });
@@ -39,11 +34,6 @@ export async function GET(request: NextRequest) {
     const allActivities = await db.activity.findMany({
       where: {
         childId: { in: childrenIds },
-      },
-      include: {
-        child: {
-          select: { name: true },
-        },
       },
     });
 
@@ -60,7 +50,7 @@ export async function GET(request: NextRequest) {
         startTime: activity.startTime,
         endTime: activity.endTime,
         location: activity.location,
-        childName: activity.child.name,
+        childId: activity.childId,
       })),
       timetable: timetable.map((slot) => ({
         id: slot.id,
@@ -68,7 +58,7 @@ export async function GET(request: NextRequest) {
         startTime: slot.startTime,
         endTime: slot.endTime,
         order: slot.order,
-        childName: slot.child.name,
+        childId: slot.childId,
       })),
     });
   } catch (error) {

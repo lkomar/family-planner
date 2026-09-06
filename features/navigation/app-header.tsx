@@ -3,6 +3,7 @@ import { getFormatter } from "next-intl/server";
 import { LanguageSwitcher } from "@/components/language-switcher";
 import { Link } from "@/i18n/navigation";
 import { getCurrentHousehold } from "@/lib/household";
+import { GlobalDayNavigator } from "./global-day-navigator";
 import { NavLinks } from "./nav-links";
 
 export async function AppHeader() {
@@ -31,6 +32,9 @@ export async function AppHeader() {
           <NavLinks />
           <LanguageSwitcher />
         </div>
+      </div>
+      <div className="mx-auto w-full max-w-7xl px-4 pb-3">
+        <GlobalDayNavigator />
       </div>
     </header>
   );

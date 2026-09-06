@@ -55,7 +55,13 @@ export default async function DashboardPage() {
       </div>
 
       {children.length > 0 && (
-        <DayActivities childrenIds={children.map((child) => child.id)} />
+        <DayActivities
+          childList={children.map((child) => ({
+            id: child.id,
+            name: child.name,
+            grade: child.grade,
+          }))}
+        />
       )}
 
       <div className="grid grid-cols-1 gap-6 md:grid-cols-3">

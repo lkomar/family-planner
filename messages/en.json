@@ -93,10 +93,20 @@
     "notesBoardSubtitle": "Pinned notes available for the whole family to read.",
     "noChildren": "No children added yet. Add one to start building their timetable, activities, and homework.",
     "addChildLink": "Add a child",
-    "weekScheduleTitle": "This Week's Schedule",
+    "weekScheduleTitle": "Plan for the Week",
     "classSchedule": "Class Schedule",
     "loading": "Loading schedule...",
-    "nothingScheduled": "Nothing scheduled for this day."
+    "nothingScheduled": "Nothing scheduled for this day.",
+    "todayLabel": "Today",
+    "planLabel": "Plan",
+    "kidsScheduleTitle": "Kids' Daily Lessons & Schedules",
+    "kidsScheduleSubtitle": "Quick review of school classes and activities for the selected day.",
+    "dayScheduleBadge": "{day} Schedule",
+    "showSchedule": "Show schedule",
+    "hideSchedule": "Hide schedule",
+    "fullTimetable": "Full Timetable →",
+    "previousDay": "Previous day",
+    "nextDay": "Next day"
   },
   "Family": {
     "title": "Family",

@@ -96,7 +96,17 @@
     "weekScheduleTitle": "Plan na ten tydzień",
     "classSchedule": "Plan lekcji",
     "loading": "Ładowanie planu...",
-    "nothingScheduled": "Nic zaplanowanego na ten dzień."
+    "nothingScheduled": "Nic zaplanowanego na ten dzień.",
+    "todayLabel": "Dziś",
+    "planLabel": "Plan",
+    "kidsScheduleTitle": "Lekcje i plan dnia dzieci",
+    "kidsScheduleSubtitle": "Szybki podgląd lekcji i zajęć na wybrany dzień.",
+    "dayScheduleBadge": "Plan: {day}",
+    "showSchedule": "Pokaż plan",
+    "hideSchedule": "Ukryj plan",
+    "fullTimetable": "Pełny plan →",
+    "previousDay": "Poprzedni dzień",
+    "nextDay": "Następny dzień"
   },
   "Family": {
     "title": "Rodzina",
