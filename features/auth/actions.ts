@@ -30,12 +30,21 @@ function setSessionCookie(
   cookieStore: Awaited<ReturnType<typeof cookies>>,
   subdomain: string,
 ) {
+  const rootDomain = process.env.ROOT_DOMAIN;
+
   cookieStore.set(SESSION_COOKIE_NAME, createSessionToken(subdomain), {
     httpOnly: true,
     secure: process.env.NODE_ENV === "production",
     sameSite: "lax",
     path: "/",
     maxAge: SESSION_MAX_AGE_SECONDS,
+    // Without this, a cookie set while on the root domain (signup) or a
+    // *different* subdomain never reaches the tenant it's actually for —
+    // cookies default to the exact host that set them. Safe to broaden:
+    // the token itself is bound to `subdomain` (see lib/auth.ts), so this
+    // only controls whether the browser *attaches* it, not which tenant it
+    // unlocks.
+    domain: rootDomain ? `.${rootDomain}` : undefined,
   });
 }
 
