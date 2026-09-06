@@ -5,6 +5,7 @@ import {
   LayoutDashboard,
   Recycle,
   ShoppingCart,
+  Users,
 } from "lucide-react";
 import { useTranslations } from "next-intl";
 import type { ComponentType } from "react";
@@ -12,14 +13,15 @@ import { Link, usePathname } from "@/i18n/navigation";
 import { cn } from "@/lib/utils";
 
 const NAV_ITEMS: Array<{
-  href: "/" | "/planner" | "/groceries" | "/trash";
-  labelKey: "dashboard" | "planner" | "groceries" | "trash";
+  href: "/" | "/planner" | "/groceries" | "/trash" | "/family";
+  labelKey: "dashboard" | "planner" | "groceries" | "trash" | "family";
   icon: ComponentType<{ className?: string }>;
 }> = [
   { href: "/", labelKey: "dashboard", icon: LayoutDashboard },
   { href: "/planner", labelKey: "planner", icon: CalendarDays },
   { href: "/groceries", labelKey: "groceries", icon: ShoppingCart },
   { href: "/trash", labelKey: "trash", icon: Recycle },
+  { href: "/family", labelKey: "family", icon: Users },
 ];
 
 export function NavLinks() {

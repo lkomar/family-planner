@@ -18,7 +18,8 @@
     "dashboard": "Panel",
     "planner": "Dzieci i lekcje",
     "groceries": "Lista zakupów",
-    "trash": "Segregacja"
+    "trash": "Segregacja",
+    "family": "Rodzina"
   },
   "Dashboard": {
     "badge": "Centrum rodziny",
@@ -77,7 +78,26 @@
     "toggle": "Oznacz jako zrobione",
     "delete": "Usuń",
     "notesBoardTitle": "Tablica ogłoszeń rodziny",
-    "notesBoardSubtitle": "Przypięte notatki widoczne dla całej rodziny."
+    "notesBoardSubtitle": "Przypięte notatki widoczne dla całej rodziny.",
+    "noChildren": "Nie dodano jeszcze żadnego dziecka. Dodaj je, aby ustawić plan lekcji, zajęcia i zadania domowe.",
+    "addChildLink": "Dodaj dziecko"
+  },
+  "Family": {
+    "title": "Rodzina",
+    "subtitle": "Zarządzaj nazwą rodziny i jej członkami.",
+    "householdNameTitle": "Nazwa rodziny",
+    "householdNameLabel": "Nazwa rodziny",
+    "save": "Zapisz",
+    "childrenTitle": "Dzieci",
+    "childrenEmpty": "Nie dodano jeszcze żadnego dziecka.",
+    "addChildTitle": "Dodaj dziecko",
+    "namePlaceholder": "Imię (np. Leo)",
+    "gradePlaceholder": "Klasa (np. Klasa 5)",
+    "nameLabel": "Imię",
+    "gradeLabel": "Klasa",
+    "add": "Dodaj",
+    "editChild": "Edytuj dziecko",
+    "deleteChild": "Usuń dziecko"
   },
   "Groceries": {
     "title": "Wspólna lista zakupów",

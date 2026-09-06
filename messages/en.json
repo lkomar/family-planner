@@ -18,7 +18,8 @@
     "dashboard": "Dashboard",
     "planner": "Kids & Lessons",
     "groceries": "Grocery List",
-    "trash": "Trash Guide"
+    "trash": "Trash Guide",
+    "family": "Family"
   },
   "Dashboard": {
     "badge": "Family Central",
@@ -77,7 +78,26 @@
     "toggle": "Mark as done",
     "delete": "Delete",
     "notesBoardTitle": "Family Message Board & Notes",
-    "notesBoardSubtitle": "Pinned notes available for the whole family to read."
+    "notesBoardSubtitle": "Pinned notes available for the whole family to read.",
+    "noChildren": "No children added yet. Add one to start building their timetable, activities, and homework.",
+    "addChildLink": "Add a child"
+  },
+  "Family": {
+    "title": "Family",
+    "subtitle": "Manage the household name and who's in the family.",
+    "householdNameTitle": "Household Name",
+    "householdNameLabel": "Household name",
+    "save": "Save",
+    "childrenTitle": "Children",
+    "childrenEmpty": "No children added yet.",
+    "addChildTitle": "Add a Child",
+    "namePlaceholder": "Name (e.g. Leo)",
+    "gradePlaceholder": "Grade (e.g. Grade 5)",
+    "nameLabel": "Name",
+    "gradeLabel": "Grade",
+    "add": "Add",
+    "editChild": "Edit child",
+    "deleteChild": "Remove child"
   },
   "Groceries": {
     "title": "Shared Grocery List",
