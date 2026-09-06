@@ -6,6 +6,7 @@ const nextConfig: NextConfig = {
   // required at runtime instead — both expect to be loaded as real Node
   // modules, not bundled.
   serverExternalPackages: ["@prisma/client", "pg"],
+  allowedDevOrigins: ["demo.lvh.me", "komary.lvh.me"],
 };
 
 const withNextIntl = createNextIntlPlugin("./i18n/request.ts");

@@ -1,6 +1,6 @@
 "use server";
 
-import { cookies } from "next/headers";
+import { cookies, headers } from "next/headers";
 import { notFound, redirect as redirectAbsolute } from "next/navigation";
 import { hasLocale } from "next-intl";
 import { z } from "zod";
@@ -134,6 +134,16 @@ export async function signup(formData: FormData) {
   }
 
   // Cross-subdomain, so this needs an absolute-URL redirect — next-intl's
-  // `redirect` only knows about paths on the current origin.
-  redirectAbsolute(`https://${subdomain}.${rootDomain}/${locale}`);
+  // `redirect` only knows about paths on the current origin. Match the
+  // current request's protocol and port (e.g. plain http on localhost:3000,
+  // or https with no port once this is behind a real domain) instead of
+  // assuming https on the default port.
+  const headersList = await headers();
+  const protocol =
+    headersList.get("x-forwarded-proto") ??
+    (process.env.NODE_ENV === "production" ? "https" : "http");
+  const currentHost = headersList.get("host") ?? rootDomain;
+  const port = currentHost.includes(":") ? `:${currentHost.split(":")[1]}` : "";
+
+  redirectAbsolute(`${protocol}://${subdomain}.${rootDomain}${port}/${locale}`);
 }
