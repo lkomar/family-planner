@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { addChild, updateHouseholdName } from "@/features/family/actions";
 import { ChildRow } from "@/features/family/child-row";
+import { DeleteHouseholdSection } from "@/features/family/delete-household-section";
 import { db } from "@/lib/db";
 import { getCurrentHousehold } from "@/lib/household";
 
@@ -95,6 +96,8 @@ export default async function FamilyPage() {
           </form>
         </details>
       </div>
+
+      <DeleteHouseholdSection />
     </div>
   );
 }

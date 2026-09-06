@@ -8,6 +8,7 @@ import { DinnerCard } from "@/features/dinner/dinner-card";
 import { NotesBoard } from "@/features/notes/notes-board";
 import { TodoList } from "@/features/todos/todo-list";
 import { TodayTrashWidget } from "@/features/trash/today-trash-widget";
+import { DayActivities } from "@/features/dashboard/day-activities";
 import { Link } from "@/i18n/navigation";
 import { db } from "@/lib/db";
 import { GROCERY_CATEGORY_ICONS } from "@/lib/grocery-categories";
@@ -20,11 +21,17 @@ export default async function DashboardPage() {
     getCurrentHousehold(),
   ]);
 
-  const pendingGroceries = await db.groceryItem.findMany({
-    where: { householdId: household.id, completed: false },
-    orderBy: { createdAt: "asc" },
-    take: 4,
-  });
+  const [pendingGroceries, children] = await Promise.all([
+    db.groceryItem.findMany({
+      where: { householdId: household.id, completed: false },
+      orderBy: { createdAt: "asc" },
+      take: 4,
+    }),
+    db.child.findMany({
+      where: { householdId: household.id },
+      orderBy: { order: "asc" },
+    }),
+  ]);
 
   return (
     <div className="space-y-6">
@@ -46,6 +53,10 @@ export default async function DashboardPage() {
         </div>
         <TodayTrashWidget />
       </div>
+
+      {children.length > 0 && (
+        <DayActivities childrenIds={children.map((child) => child.id)} />
+      )}
 
       <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
         <div className="flex flex-col rounded-3xl border bg-card p-5 shadow-md">

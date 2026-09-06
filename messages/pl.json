@@ -92,7 +92,11 @@
     "notesBoardTitle": "Tablica ogłoszeń rodziny",
     "notesBoardSubtitle": "Przypięte notatki widoczne dla całej rodziny.",
     "noChildren": "Nie dodano jeszcze żadnego dziecka. Dodaj je, aby ustawić plan lekcji, zajęcia i zadania domowe.",
-    "addChildLink": "Dodaj dziecko"
+    "addChildLink": "Dodaj dziecko",
+    "weekScheduleTitle": "Plan na ten tydzień",
+    "classSchedule": "Plan lekcji",
+    "loading": "Ładowanie planu...",
+    "nothingScheduled": "Nic zaplanowanego na ten dzień."
   },
   "Family": {
     "title": "Rodzina",
@@ -109,7 +113,16 @@
     "gradeLabel": "Klasa",
     "add": "Dodaj",
     "editChild": "Edytuj dziecko",
-    "deleteChild": "Usuń dziecko"
+    "deleteChild": "Usuń dziecko",
+    "dangerZoneTitle": "Strefa niebezpieczna",
+    "dangerZoneDescription": "Trwale usuń swoją rodzinę i wszystkie powiązane dane (dzieci, harmonogramy, notatki, zakupy itp.). Ta czynność nie może być cofnięta.",
+    "deleteHouseholdButton": "Usuń rodzinę",
+    "deleteHouseholdConfirmTitle": "Trwale usunąć rodzinę?",
+    "deleteHouseholdConfirmDescription": "Spowoduje to trwałe usunięcie konta rodziny i WSZYSTKICH powiązanych danych, w tym dzieci, planów lekcji, zajęć, zadań domowych, notatek, przypomnień i list zakupów. Tej czynności nie można cofnąć.",
+    "deleteHouseholdConfirmLabel": "Wpisz DELETE, aby potwierdzić:",
+    "deleteHouseholdConfirmButton": "Trwale usuń rodzinę",
+    "deleting": "Usuwanie...",
+    "cancel": "Anuluj"
   },
   "Groceries": {
     "title": "Wspólna lista zakupów",

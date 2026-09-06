@@ -1,5 +1,6 @@
 "use server";
 
+import { redirect } from "next/navigation";
 import { revalidatePath } from "next/cache";
 import { z } from "zod";
 import { db } from "@/lib/db";
@@ -65,4 +66,27 @@ export async function deleteChild(id: string) {
   await db.child.delete({ where: { id } });
 
   revalidateFamily();
+}
+
+const deleteHouseholdSchema = z.object({
+  confirmation: z.enum(["DELETE"]),
+});
+
+export async function deleteHousehold(formData: FormData) {
+  const parsed = deleteHouseholdSchema.safeParse({
+    confirmation: formData.get("confirmation"),
+  });
+
+  if (!parsed.success) {
+    throw new Error("Invalid deletion confirmation");
+  }
+
+  const household = await getCurrentHousehold();
+
+  // Cascades to all children, notes, todos, groceries, trash schedule, etc.
+  // (see prisma/schema.prisma for cascade rules)
+  await db.household.delete({ where: { id: household.id } });
+
+  // Redirect to signup page since household is deleted
+  redirect("/");
 }

@@ -92,7 +92,11 @@
     "notesBoardTitle": "Family Message Board & Notes",
     "notesBoardSubtitle": "Pinned notes available for the whole family to read.",
     "noChildren": "No children added yet. Add one to start building their timetable, activities, and homework.",
-    "addChildLink": "Add a child"
+    "addChildLink": "Add a child",
+    "weekScheduleTitle": "This Week's Schedule",
+    "classSchedule": "Class Schedule",
+    "loading": "Loading schedule...",
+    "nothingScheduled": "Nothing scheduled for this day."
   },
   "Family": {
     "title": "Family",
@@ -109,7 +113,16 @@
     "gradeLabel": "Grade",
     "add": "Add",
     "editChild": "Edit child",
-    "deleteChild": "Remove child"
+    "deleteChild": "Remove child",
+    "dangerZoneTitle": "Danger Zone",
+    "dangerZoneDescription": "Permanently delete your household and all associated data (children, schedules, notes, groceries, etc.). This action cannot be undone.",
+    "deleteHouseholdButton": "Delete Household",
+    "deleteHouseholdConfirmTitle": "Permanently Delete Household?",
+    "deleteHouseholdConfirmDescription": "This will permanently delete your household account and ALL associated data including children, timetables, activities, homework, notes, todos, and grocery lists. This action cannot be undone.",
+    "deleteHouseholdConfirmLabel": "Type DELETE to confirm:",
+    "deleteHouseholdConfirmButton": "Delete Household Permanently",
+    "deleting": "Deleting...",
+    "cancel": "Cancel"
   },
   "Groceries": {
     "title": "Shared Grocery List",
