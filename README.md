@@ -27,6 +27,10 @@ household password, then redirected to a locale-prefixed URL such as `/en`.
   (real, bookmarkable URLs via `searchParams`) and inline add.
 - **Trash Guide** (`/trash`) — the household's weekly collection schedule
   with today highlighted, plus a searchable sorting-guide dictionary.
+- **Family** (`/family`) — rename the household and add, edit, or remove
+  children. A new child starts with an empty timetable/activities/homework
+  (there's no timetable *editor* yet — that still goes through Prisma
+  directly, e.g. `npx prisma studio`).
 
 Almost everything is a Server Component reading Prisma directly, with
 mutations as Server Actions bound straight to `<form action>` — including
