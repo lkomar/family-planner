@@ -1,0 +1,197 @@
+// Prisma schema for the Family Planner app.
+// Learn more: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client"
+  output   = "../lib/generated/prisma"
+}
+
+datasource db {
+  provider = "sqlite"
+}
+
+/// A single family's shared space. Every other model hangs off one household.
+/// There's no auth/multi-household UI yet — see lib/household.ts — but modeling
+/// it now avoids a painful migration once accounts exist.
+model Household {
+  id            String   @id @default(cuid())
+  name          String
+  /// Free-text "what's for dinner tonight" note shown on the dashboard.
+  dinnerTonight String?
+  createdAt     DateTime @default(now())
+
+  children      Child[]
+  notes         StickyNote[]
+  todos         Todo[]
+  groceryItems  GroceryItem[]
+  trashSchedule TrashScheduleEntry[]
+  trashGuideItems TrashGuideItem[]
+}
+
+model Child {
+  id          String   @id @default(cuid())
+  householdId String
+  household   Household @relation(fields: [householdId], references: [id], onDelete: Cascade)
+  /// Display name, entered by the family — not translated.
+  name        String
+  /// Free text (e.g. "Grade 5", "Klasa 3") — grading conventions vary by country.
+  grade       String
+  order       Int      @default(0)
+
+  timetableSlots TimetableSlot[]
+  activities     Activity[]
+  homework       Homework[]
+
+  @@index([householdId])
+}
+
+enum Weekday {
+  MON
+  TUE
+  WED
+  THU
+  FRI
+  SAT
+  SUN
+}
+
+/// One cell of a child's weekly class timetable.
+model TimetableSlot {
+  id        String  @id @default(cuid())
+  childId   String
+  child     Child   @relation(fields: [childId], references: [id], onDelete: Cascade)
+  weekday   Weekday
+  /// Display order of the period within the day (1st period, 2nd period, ...).
+  order     Int
+  startTime String
+  endTime   String
+  /// Subject name, entered by the family — not translated.
+  subject   String
+
+  @@index([childId])
+}
+
+/// After-school club/activity. `weekdays` is a comma-separated list of Weekday
+/// values (e.g. "TUE,THU") — SQLite has no native array/list column type.
+model Activity {
+  id        String @id @default(cuid())
+  childId   String
+  child     Child  @relation(fields: [childId], references: [id], onDelete: Cascade)
+  /// Activity name, entered by the family — not translated.
+  name      String
+  weekdays  String
+  startTime String
+  endTime   String
+  location  String
+
+  @@index([childId])
+}
+
+model Homework {
+  id        String   @id @default(cuid())
+  childId   String
+  child     Child    @relation(fields: [childId], references: [id], onDelete: Cascade)
+  /// Task description, entered by the family — not translated.
+  task      String
+  done      Boolean  @default(false)
+  createdAt DateTime @default(now())
+
+  @@index([childId])
+}
+
+enum NoteColor {
+  YELLOW
+  PINK
+  EMERALD
+  SKY
+  PURPLE
+}
+
+model StickyNote {
+  id          String    @id @default(cuid())
+  householdId String
+  household   Household @relation(fields: [householdId], references: [id], onDelete: Cascade)
+  /// Signature/author, entered by the family — not translated (e.g. "Mom").
+  author      String
+  /// Note body, entered by the family — not translated.
+  content     String
+  color       NoteColor @default(YELLOW)
+  createdAt   DateTime  @default(now())
+
+  @@index([householdId])
+}
+
+model Todo {
+  id          String    @id @default(cuid())
+  householdId String
+  household   Household @relation(fields: [householdId], references: [id], onDelete: Cascade)
+  /// Reminder text, entered by the family — not translated.
+  text        String
+  completed   Boolean   @default(false)
+  createdAt   DateTime  @default(now())
+
+  @@index([householdId])
+}
+
+enum GroceryCategory {
+  PRODUCE
+  DAIRY_EGGS
+  BAKERY
+  PANTRY
+  HOUSEHOLD
+  SNACKS_DRINKS
+}
+
+model GroceryItem {
+  id          String          @id @default(cuid())
+  householdId String
+  household   Household       @relation(fields: [householdId], references: [id], onDelete: Cascade)
+  /// Item name, entered by the family — not translated.
+  name        String
+  category    GroceryCategory
+  /// Optional quantity/notes, entered by the family — not translated.
+  quantity    String?
+  completed   Boolean         @default(false)
+  createdAt   DateTime        @default(now())
+
+  @@index([householdId])
+}
+
+enum WasteType {
+  GENERAL
+  ORGANIC
+  PLASTICS_METALS
+  PAPER_CARDBOARD
+  GLASS
+  /// Batteries, light bulbs, and other items that need special drop-off —
+  /// never assigned a weekday in the regular collection schedule.
+  HAZARDOUS
+  NONE
+}
+
+/// Which waste type is collected on each weekday. One row per weekday per
+/// household — collection schedules are set by the local municipality, not
+/// the app, so this is configurable data rather than a fixed constant.
+model TrashScheduleEntry {
+  id          String    @id @default(cuid())
+  householdId String
+  household   Household @relation(fields: [householdId], references: [id], onDelete: Cascade)
+  weekday     Weekday
+  wasteType   WasteType
+
+  @@unique([householdId, weekday])
+}
+
+/// Household-specific sorting reference ("where does X go?"). Seeded with
+/// common examples; families can add their own.
+model TrashGuideItem {
+  id          String    @id @default(cuid())
+  householdId String
+  household   Household @relation(fields: [householdId], references: [id], onDelete: Cascade)
+  /// Item name, entered by the family — not translated.
+  item        String
+  wasteType   WasteType
+  createdAt   DateTime  @default(now())
+
+  @@index([householdId])
+}
