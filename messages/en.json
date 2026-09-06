@@ -1,14 +1,160 @@
 {
   "Metadata": {
     "title": "Family Planner",
-    "description": "Plan tasks and stay organized together as a family."
-  },
-  "HomePage": {
-    "title": "Family Planner",
-    "subtitle": "Your family's shared space for tasks, plans, and everything in between.",
-    "getStarted": "Get started"
+    "description": "Plan tasks, meals, groceries, and school schedules together as a family."
   },
   "LanguageSwitcher": {
     "label": "Language"
+  },
+  "Nav": {
+    "dashboard": "Dashboard",
+    "planner": "Kids & Lessons",
+    "groceries": "Grocery List",
+    "trash": "Trash Guide"
+  },
+  "Dashboard": {
+    "badge": "Family Central",
+    "welcomeTitle": "Good morning, {name}! ☀️",
+    "welcomeSubtitle": "Welcome to your digital fridge door. Everything important for today is pinned right here.",
+    "notesTitle": "Family Sticky Notes",
+    "notesPinnedHint": "Pinned on fridge door",
+    "viewAllNotes": "View all notes →",
+    "groceryWatchTitle": "Quick Grocery Watch",
+    "groceryWatchSubtitle": "Items still needed:",
+    "groceryWatchEmpty": "No items needed right now — good job!",
+    "openList": "Open List",
+    "todos": {
+      "title": "Today's Reminders",
+      "countLeft": "{count} left",
+      "addPlaceholder": "Add a quick family reminder...",
+      "add": "Add",
+      "empty": "Nothing to do — enjoy the day!",
+      "toggle": "Mark as done",
+      "delete": "Delete"
+    },
+    "dinner": {
+      "title": "Dinner Tonight",
+      "empty": "Not decided yet",
+      "placeholder": "What's for dinner?",
+      "save": "Save"
+    }
+  },
+  "Notes": {
+    "createTitle": "Create a Sticky Note",
+    "form": {
+      "author": "Note Title / Author",
+      "authorPlaceholder": "e.g. Mom, Dad, or Movie Night",
+      "content": "Note Message",
+      "contentPlaceholder": "Write a family note here...",
+      "color": "Note Color"
+    },
+    "save": "Pin to Fridge",
+    "empty": "No notes pinned yet.",
+    "anonymousAuthor": "Family Member",
+    "edit": "Edit",
+    "delete": "Remove"
+  },
+  "Planner": {
+    "title": "Kids & Lesson Plans",
+    "subtitle": "Keep track of school timetables, after-school clubs, and homework.",
+    "timetableTitle": "{name}'s Weekly Timetable ({grade})",
+    "timetableEmpty": "No timetable added yet.",
+    "timeColumn": "Time",
+    "activitiesTitle": "After School & Clubs",
+    "activitiesEmpty": "No activities added yet.",
+    "homeworkTitle": "Homework & Notes",
+    "addHomeworkPlaceholder": "Add homework or reminder...",
+    "add": "Add",
+    "homeworkEmpty": "No homework right now — nice!",
+    "toggle": "Mark as done",
+    "delete": "Delete",
+    "notesBoardTitle": "Family Message Board & Notes",
+    "notesBoardSubtitle": "Pinned notes available for the whole family to read."
+  },
+  "Groceries": {
+    "title": "Shared Grocery List",
+    "subtitle": "Editable by everyone in the family. Add items the moment you run out.",
+    "clearChecked": "Clear Checked",
+    "addPlaceholder": "What do we need? (e.g. Oat Milk, Bananas...)",
+    "categoryLabel": "Category",
+    "quantityPlaceholder": "Quantity / notes (optional)",
+    "add": "Add",
+    "filterAll": "All Items",
+    "empty": "No items in this category yet.",
+    "toggle": "Mark as bought",
+    "delete": "Delete"
+  },
+  "GroceryCategory": {
+    "PRODUCE": "Produce",
+    "DAIRY_EGGS": "Dairy & Eggs",
+    "BAKERY": "Bakery",
+    "PANTRY": "Pantry",
+    "HOUSEHOLD": "Household",
+    "SNACKS_DRINKS": "Snacks & Drinks"
+  },
+  "Trash": {
+    "title": "Trash & Recycling Schedule",
+    "subtitle": "Never miss bin day again — check what's collected on any given day.",
+    "dictionaryTitle": "Sorting Guide Dictionary",
+    "dictionarySubtitle": "Quick check for where specific household waste goes.",
+    "searchPlaceholder": "Search item (e.g. pizza box, battery)...",
+    "dictionaryEmpty": "No matching items found.",
+    "binLabel": "Bin: {bin}",
+    "binSelectLabel": "Waste type",
+    "delete": "Delete",
+    "addItemPlaceholder": "Add an item (e.g. Yogurt cup)",
+    "add": "Add"
+  },
+  "WasteType": {
+    "collectionTodayLabel": "Trash Collection Today",
+    "todayBadge": "TODAY",
+    "GENERAL": {
+      "name": "General Waste",
+      "description": "Non-recyclable household waste."
+    },
+    "ORGANIC": {
+      "name": "Organic / Food Waste",
+      "description": "Food scraps, peelings, and coffee grounds."
+    },
+    "PLASTICS_METALS": {
+      "name": "Plastics & Metals",
+      "description": "Plastic bottles, cans, cartons, and foil packaging."
+    },
+    "PAPER_CARDBOARD": {
+      "name": "Paper & Cardboard",
+      "description": "Newspapers, flattened boxes, mail, and clean paper."
+    },
+    "GLASS": {
+      "name": "Glass Collection",
+      "description": "Glass jars and bottles, rinsed clean."
+    },
+    "HAZARDOUS": {
+      "name": "Hazardous / Drop-off",
+      "description": "Batteries, light bulbs, and items needing special disposal."
+    },
+    "NONE": {
+      "name": "No Collection",
+      "description": "Nothing scheduled for pickup today."
+    }
+  },
+  "Weekday": {
+    "short": {
+      "MON": "Mon",
+      "TUE": "Tue",
+      "WED": "Wed",
+      "THU": "Thu",
+      "FRI": "Fri",
+      "SAT": "Sat",
+      "SUN": "Sun"
+    },
+    "long": {
+      "MON": "Monday",
+      "TUE": "Tuesday",
+      "WED": "Wednesday",
+      "THU": "Thursday",
+      "FRI": "Friday",
+      "SAT": "Saturday",
+      "SUN": "Sunday"
+    }
   }
 }

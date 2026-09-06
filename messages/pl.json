@@ -1,14 +1,160 @@
 {
   "Metadata": {
     "title": "Planer Rodzinny",
-    "description": "Planujcie zadania i organizujcie się razem jako rodzina."
-  },
-  "HomePage": {
-    "title": "Planer Rodzinny",
-    "subtitle": "Wspólna przestrzeń rodziny na zadania, plany i wszystko pomiędzy.",
-    "getStarted": "Zaczynajmy"
+    "description": "Planujcie zadania, posiłki, zakupy i szkolne plany razem jako rodzina."
   },
   "LanguageSwitcher": {
     "label": "Język"
+  },
+  "Nav": {
+    "dashboard": "Panel",
+    "planner": "Dzieci i lekcje",
+    "groceries": "Lista zakupów",
+    "trash": "Segregacja"
+  },
+  "Dashboard": {
+    "badge": "Centrum rodziny",
+    "welcomeTitle": "Dzień dobry, {name}! ☀️",
+    "welcomeSubtitle": "Witajcie na cyfrowych drzwiach lodówki. Wszystko ważne na dziś znajdziecie właśnie tutaj.",
+    "notesTitle": "Rodzinne karteczki",
+    "notesPinnedHint": "Przypięte na lodówce",
+    "viewAllNotes": "Zobacz wszystkie →",
+    "groceryWatchTitle": "Podgląd zakupów",
+    "groceryWatchSubtitle": "Wciąż potrzebne produkty:",
+    "groceryWatchEmpty": "Na razie nic nie jest potrzebne — brawo!",
+    "openList": "Otwórz listę",
+    "todos": {
+      "title": "Dzisiejsze przypomnienia",
+      "countLeft": "Pozostało: {count}",
+      "addPlaceholder": "Dodaj szybkie przypomnienie...",
+      "add": "Dodaj",
+      "empty": "Nic do zrobienia — miłego dnia!",
+      "toggle": "Oznacz jako zrobione",
+      "delete": "Usuń"
+    },
+    "dinner": {
+      "title": "Dzisiejszy obiad",
+      "empty": "Jeszcze nie zdecydowano",
+      "placeholder": "Co na obiad?",
+      "save": "Zapisz"
+    }
+  },
+  "Notes": {
+    "createTitle": "Utwórz notatkę",
+    "form": {
+      "author": "Autor / tytuł notatki",
+      "authorPlaceholder": "np. Mama, Tata, Wieczór filmowy",
+      "content": "Treść notatki",
+      "contentPlaceholder": "Napisz wiadomość dla rodziny...",
+      "color": "Kolor notatki"
+    },
+    "save": "Przypnij do lodówki",
+    "empty": "Brak przypiętych notatek.",
+    "anonymousAuthor": "Domownik",
+    "edit": "Edytuj",
+    "delete": "Usuń"
+  },
+  "Planner": {
+    "title": "Dzieci i plan lekcji",
+    "subtitle": "Śledźcie plany lekcji, zajęcia dodatkowe i zadania domowe.",
+    "timetableTitle": "Plan lekcji: {name} ({grade})",
+    "timetableEmpty": "Nie dodano jeszcze planu lekcji.",
+    "timeColumn": "Godzina",
+    "activitiesTitle": "Zajęcia dodatkowe",
+    "activitiesEmpty": "Nie dodano jeszcze żadnych zajęć.",
+    "homeworkTitle": "Zadania domowe",
+    "addHomeworkPlaceholder": "Dodaj zadanie lub przypomnienie...",
+    "add": "Dodaj",
+    "homeworkEmpty": "Brak zadań — super!",
+    "toggle": "Oznacz jako zrobione",
+    "delete": "Usuń",
+    "notesBoardTitle": "Tablica ogłoszeń rodziny",
+    "notesBoardSubtitle": "Przypięte notatki widoczne dla całej rodziny."
+  },
+  "Groceries": {
+    "title": "Wspólna lista zakupów",
+    "subtitle": "Edytowalna przez całą rodzinę. Dodawajcie produkty, gdy tylko się skończą.",
+    "clearChecked": "Wyczyść odhaczone",
+    "addPlaceholder": "Czego potrzebujemy? (np. mleko owsiane, banany...)",
+    "categoryLabel": "Kategoria",
+    "quantityPlaceholder": "Ilość / uwagi (opcjonalnie)",
+    "add": "Dodaj",
+    "filterAll": "Wszystkie",
+    "empty": "Brak produktów w tej kategorii.",
+    "toggle": "Oznacz jako kupione",
+    "delete": "Usuń"
+  },
+  "GroceryCategory": {
+    "PRODUCE": "Warzywa i owoce",
+    "DAIRY_EGGS": "Nabiał i jajka",
+    "BAKERY": "Pieczywo",
+    "PANTRY": "Spiżarnia",
+    "HOUSEHOLD": "Chemia domowa",
+    "SNACKS_DRINKS": "Przekąski i napoje"
+  },
+  "Trash": {
+    "title": "Harmonogram wywozu odpadów",
+    "subtitle": "Nie przegapcie dnia wywozu — sprawdźcie, co jest odbierane danego dnia.",
+    "dictionaryTitle": "Słownik segregacji",
+    "dictionarySubtitle": "Szybkie sprawdzenie, gdzie wyrzucić dany odpad.",
+    "searchPlaceholder": "Szukaj przedmiotu (np. karton po pizzy, bateria)...",
+    "dictionaryEmpty": "Nie znaleziono pasujących przedmiotów.",
+    "binLabel": "Kosz: {bin}",
+    "binSelectLabel": "Rodzaj odpadu",
+    "delete": "Usuń",
+    "addItemPlaceholder": "Dodaj przedmiot (np. kubek po jogurcie)",
+    "add": "Dodaj"
+  },
+  "WasteType": {
+    "collectionTodayLabel": "Dzisiejszy odbiór odpadów",
+    "todayBadge": "DZIŚ",
+    "GENERAL": {
+      "name": "Odpady zmieszane",
+      "description": "Odpady, których nie można poddać recyklingowi."
+    },
+    "ORGANIC": {
+      "name": "Bioodpady",
+      "description": "Obierki, resztki jedzenia i fusy po kawie."
+    },
+    "PLASTICS_METALS": {
+      "name": "Plastik i metale",
+      "description": "Plastikowe butelki, puszki, kartony i folia."
+    },
+    "PAPER_CARDBOARD": {
+      "name": "Papier i tektura",
+      "description": "Gazety, złożone kartony, listy i czysty papier."
+    },
+    "GLASS": {
+      "name": "Szkło",
+      "description": "Słoiki i butelki szklane, umyte."
+    },
+    "HAZARDOUS": {
+      "name": "Odpady niebezpieczne",
+      "description": "Baterie, żarówki i inne odpady wymagające specjalnej utylizacji."
+    },
+    "NONE": {
+      "name": "Brak odbioru",
+      "description": "Dziś nie zaplanowano żadnego odbioru."
+    }
+  },
+  "Weekday": {
+    "short": {
+      "MON": "Pon",
+      "TUE": "Wt",
+      "WED": "Śr",
+      "THU": "Czw",
+      "FRI": "Pt",
+      "SAT": "Sob",
+      "SUN": "Nd"
+    },
+    "long": {
+      "MON": "Poniedziałek",
+      "TUE": "Wtorek",
+      "WED": "Środa",
+      "THU": "Czwartek",
+      "FRI": "Piątek",
+      "SAT": "Sobota",
+      "SUN": "Niedziela"
+    }
   }
 }
